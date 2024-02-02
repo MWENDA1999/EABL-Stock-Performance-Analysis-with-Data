@@ -2,7 +2,7 @@
 **Elevator Pitch:**
 This project analyzes the stock performance of East African Breweries Limited (EABL) using data-driven techniques. By leveraging historical stock market data, customer sentiment analysis, and regulatory insights, we aim to provide actionable recommendations to stabilize EABL's stock performance and foster sustained growth in shareholder value.
 
-![EABL product](/EABL-Stock-Performance-Analysis-with-Data/Docs/Image/samuel-svec-QyY71vg_5Pc-unsplash.jpg)
+![EABL product](Docs/Image/samuel-svec-QyY71vg_5Pc-unsplash.jpg)
 
 **Business Understanding and Data Understanding:**
 **Project Context:** EABL, a leading brewery company in East Africa, has faced challenges with stock price volatility and regulatory pressures. This analysis seeks to understand the factors influencing EABL's stock performance and provide strategic recommendations.
