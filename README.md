@@ -1,4 +1,4 @@
-# ***EABL Stock Performance Analysis with Data***
+# ***EABL Stock Performance Analysis with Time Series and Sentiment Data***
 **Elevator Pitch:**
 This project analyzes the stock performance of East African Breweries Limited (EABL) using data-driven techniques. By leveraging historical stock market data, customer sentiment analysis, and regulatory insights, we aim to provide actionable recommendations to stabilize EABL's stock performance and foster sustained growth in shareholder value.
 
