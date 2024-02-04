@@ -4,38 +4,46 @@ import pandas as pd
 # Define the relative path to the csv file
 csv_path = r"C:\Users\ADMIN\OneDrive\Desktop\EABL\EABL-Stock-Performance-Analysis-with-Data\data\raw\stockdata.csv"
 
-
-# Read the csv file using pandas
-df = pd.read_csv(csv_path)
-
-# Print the first five rows of the dataframe
-print(df.head())
-
 import matplotlib.pyplot as plt
+from statsmodels.tsa.stattools import adfuller
 
-class DataExplorer:
-    def __init__(self, file_path):
-        self.data = pd.read_csv(file_path)
+def explore_time_series_data(file_path):
+    # Load dataset
+    data = pd.read_csv(file_path)
     
-    def display_summary(self):
-        print("Summary Statistics:")
-        print(self.data.describe())
+    # Display descriptive summary
+    print("Descriptive Summary:")
+    print(data.describe())
+    print("\n")
     
-    def plot_histogram(self, column):
-        plt.hist(self.data[column], bins=20, color='skyblue', edgecolor='black')
-        plt.title(f'Histogram of {column}')
-        plt.xlabel(column)
-        plt.ylabel('Frequency')
-        plt.show()
+    # Convert to datetime and set index
+    data['Date'] = pd.to_datetime(data['Date'])
+    data.set_index('Date', inplace=True)
+    
+    # Handle missing values
+    data.fillna(method='ffill', inplace=True)
+    
+    # Plot the time series
+    plt.figure(figsize=(10, 6))
+    plt.plot(data.index, data['Close'], color='blue')
+    plt.title('Time Series Data')
+    plt.xlabel('Date')
+    plt.ylabel('Close')
+    plt.grid(True)
+    plt.show()
+    
+    # Check for stationarity
+    result = adfuller(data['Value'])
+    print('ADF Statistic:', result[0])
+    print('p-value:', result[1])
+    print('Critical Values:')
+    for key, value in result[4].items():
+        print(f'   {key}: {value}')
+    if result[1] <= 0.05:
+        print("The series is likely stationary.")
+    else:
+        print("The series is likely non-stationary.")
 
 # Example usage:
 if __name__ == "__main__":
-    # Instantiate the DataExplorer object with a file path to your data
-    explorer = DataExplorer(r"C:\Users\ADMIN\OneDrive\Desktop\EABL\EABL-Stock-Performance-Analysis-with-Data\data\raw\stockdata.csv"
-)
-    
-    # Display summary statistics
-    explorer.display_summary()
-    
-    # Plot a histogram 
-    plt.show
+    explore_time_series_data( r"C:\Users\ADMIN\OneDrive\Desktop\EABL\EABL-Stock-Performance-Analysis-with-Data\data\raw\stockdata.csv")
